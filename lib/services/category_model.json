@@ -1,0 +1,96 @@
+{
+    "categories":[
+        {
+            "name":"men dress",
+            "subcategory":[
+                "t-shirt",
+                "shirt",
+                "jens"
+            
+            ]
+        },
+        {
+            "name":"women dress",
+            "subcategory":[
+                "t-shirt",
+                "shirt",
+                "jens"
+            
+            ]
+        },
+        {
+            "name":"automobile",
+            "subcategory":[
+                "tyre",
+                "bulb",
+                "wheel"
+            
+            ]
+        },
+        {
+            "name":"toys",
+            "subcategory":[
+                "car",
+                "bike",
+                "dol"
+            
+            ]
+        },
+
+        {
+            "name":"ball",
+            "subcategory":[
+                "football",
+                "cricket ball",
+                "tenis ball"
+            
+            ]
+        },
+        {
+            "name":"mobile",
+            "subcategory":[
+                "samsung",
+                "apple",
+                "mi"
+            
+            ]
+        },
+        {
+            "name":"cosmatic",
+            "subcategory":[
+                "sun cream",
+                "lipstick",
+                "fondition"
+            
+            ]
+        },
+        {
+            "name":"construction gadget",
+            "subcategory":[
+                "gloues",
+                "helmet",
+                "shoes"
+            
+            ]
+        },
+        {
+            "name":"home decor",
+            "subcategory":[
+                "wall sticker",
+                "flowers",
+                "show pices"
+            
+            ]
+        },
+        {
+            "name":"smart tv",
+            "subcategory":[
+                "samsung",
+                "lg",
+                "sony"
+                
+            
+            ]
+        }
+    ]
+}
