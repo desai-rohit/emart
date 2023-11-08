@@ -24,7 +24,7 @@ class ProductController extends GetxController {
     var s =
         decoded.categories.where((element) => element.name == title).toList();
 
-    for (var e in s[0].subcategory) {
+    for (var e in s[1].subcategory) {
       subcat.add(e);
     }
   }
@@ -119,7 +119,7 @@ class ProductController extends GetxController {
   //     VxToast.show(bcontext, msg: error.toString());
   //   });
   // }
-  review(rateing, reviewDes, productDocId) async {
+  Future review(rateing, reviewDes, productDocId) async {
     await firestore.collection(orderCollection).doc(productDocId).set({
       "review": {"rating": rateing, "review_des": reviewDes}
       // "review": FieldValue.arrayUnion(addreview)

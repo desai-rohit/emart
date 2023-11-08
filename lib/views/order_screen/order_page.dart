@@ -46,18 +46,25 @@ class OrderPage extends StatelessWidget {
                               data: data[index],
                             ));
                       },
-                      child: ListTile(
-                        leading: Image.network(data[index]["order"][0]["img"]),
-                        title:
-                            Text(data[index]["order"][0]["title"].toString()),
-                        subtitle: Text("₹${data[index]["total_amount"]}"),
-                        trailing: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.arrow_forward_ios,
-                              color: darkFontGrey,
-                            )),
-                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListTile(
+                          shape: ContinuousRectangleBorder(
+                              borderRadius: BorderRadius.circular(16)),
+                          tileColor:  Colors.grey.shade300,
+                          leading: Image.network(data[index]["order"]["img"]),
+                          title: Text(
+                              maxLines: 2,
+                              data[index]["order"]["title"].toString()),
+                          subtitle: Text("₹${data[index]["order"]["tprice"]}"),
+                          trailing: IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.arrow_forward_ios,
+                                color: darkFontGrey,
+                              )),
+                        ),
+                      )
                     );
                   });
             }

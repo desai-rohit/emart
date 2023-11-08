@@ -34,9 +34,9 @@ class CategoriesDetails extends StatelessWidget {
           ),
           body: FutureBuilder(
             future: todaydeal == "Today Deals"
-                ? FirestoreServices.todayDeals(todaydeal)
+                ? FirestoreServices.todayDeals()
                 : flashseal == "Flash Seal"
-                    ? FirestoreServices.flashSeal(flashseal)
+                    ? FirestoreServices.flashSeal()
                     : FirestoreServices.getProduct(title),
             builder:
                 ((BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {

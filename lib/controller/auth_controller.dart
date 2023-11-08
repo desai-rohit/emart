@@ -16,7 +16,7 @@ class AuthController extends GetxController {
 
     try {
       await auth.signInWithEmailAndPassword(
-          email:  emailcontroller.text, password: passwordcontroller.text);
+          email: emailcontroller.text, password: passwordcontroller.text);
     } on FirebaseAuthException catch (e) {
       VxToast.show(context, msg: e.toString());
     }
@@ -30,7 +30,7 @@ class AuthController extends GetxController {
 
     try {
       await auth.createUserWithEmailAndPassword(
-          email:  email, password: password);
+          email: email, password: password);
     } on FirebaseAuthException catch (e) {
       VxToast.show(context, msg: e.toString());
     }

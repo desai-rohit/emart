@@ -1,5 +1,6 @@
 import 'package:ecommerse_dev_app/consts/colors.dart';
 import 'package:ecommerse_dev_app/consts/styles.dart';
+import 'package:ecommerse_dev_app/firebase_options.dart';
 import 'package:ecommerse_dev_app/views/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
             // or simply save your changes to "hot reload" in a Flutter IDE).
             // Notice that the counter didn't reset back to zero; the application
             // is not restarted.
-            primarySwatch:Colors.red,
+            primarySwatch: Colors.red,
             scaffoldBackgroundColor: Colors.transparent,
             appBarTheme: const AppBarTheme(color: redColor),
             fontFamily: regular),

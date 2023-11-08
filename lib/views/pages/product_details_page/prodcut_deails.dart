@@ -151,27 +151,39 @@ class _ProdcutDetailsState extends State<ProdcutDetails> {
                               whiteColor,
                               16,
                               Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  IconButton(
-                                      onPressed: () {
-                                        controller.decresequantity();
-                                        controller.calculateTotalPrice(
-                                            int.parse(widget.data["p_price"]));
-                                      },
-                                      icon: const Icon(Icons.remove)),
-                                  controller.quantitycount.value.text
-                                      .size(16)
-                                      .color(darkFontGrey)
-                                      .fontFamily(regular)
-                                      .make(),
-                                  IconButton(
-                                      onPressed: () {
-                                        controller.incresequantity(int.parse(
-                                            widget.data["p_quantity"]));
-                                        controller.calculateTotalPrice(
-                                            int.parse(widget.data["p_price"]));
-                                      },
-                                      icon: const Icon(Icons.add))
+                                  Row(
+                                    children: [
+                                      IconButton(
+                                          onPressed: () {
+                                            controller.decresequantity();
+                                            controller.calculateTotalPrice(
+                                                int.parse(widget.data["p_price"]));
+                                          },
+                                          icon: const Icon(Icons.remove)),
+                                      controller.quantitycount.value.text
+                                          .size(16)
+                                          .color(darkFontGrey)
+                                          .fontFamily(regular)
+                                          .make(),
+                                      IconButton(
+                                          onPressed: () {
+                                            controller.incresequantity(int.parse(
+                                                widget.data["p_quantity"]));
+                                            controller.calculateTotalPrice(
+                                                int.parse(widget.data["p_price"]));
+                                          },
+                                          icon: const Icon(Icons.add))
+                                    ],
+                                  ),
+
+                                   Obx(() => Text("₹ ${controller.totalprice.value.numCurrency}",style: const TextStyle(fontSize: 16,fontWeight: FontWeight.bold,color: Colors.green),))
+                                  //  controller.totalprice.value.text
+                                  //     .size(24)
+                                  //     .color(Colors.green)
+                                  //     .fontFamily(regular)
+                                  //     .make()),
                                 ],
                               ),
                             ),
@@ -204,7 +216,11 @@ class _ProdcutDetailsState extends State<ProdcutDetails> {
                             const SizedBox(
                               height: 16,
                             ),
-                            const Text("Description",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
+                            const Text(
+                              "Description",
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
                             const SizedBox(
                               height: 8,
                             ),
@@ -215,29 +231,7 @@ class _ProdcutDetailsState extends State<ProdcutDetails> {
                                 style: const TextStyle(fontSize: 16),
                               ),
                             ),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            Container(
-                              padding: const EdgeInsets.all(4),
-                              color: Colors.lightGreen.shade100,
-                              width: double.infinity,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  const Text(
-                                    "Total Price",
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                  Obx(() => controller.totalprice.value.text
-                                      .size(24)
-                                      .color(darkFontGrey)
-                                      .fontFamily(regular)
-                                      .make()),
-                                ],
-                              ),
-                            ),
+                            
                             const SizedBox(
                               height: 16,
                             ),
@@ -258,9 +252,9 @@ class _ProdcutDetailsState extends State<ProdcutDetails> {
                                   itemCount: reviewData.length,
                                   itemBuilder: ((context, index) {
                                     controller.ratingavg.value = index;
-                                    return reviewData[index]["order"][0]
+                                    return reviewData[index]["order"]
                                                 ["prodcut_id"] ==
-                                            widget.data["product_id"]
+                                            widget.data["product_id"] && reviewData[index]["review"]["rating"] !="0.0"
                                         ? ListTile(
                                             leading: const CircleAvatar(
                                               backgroundImage: NetworkImage(

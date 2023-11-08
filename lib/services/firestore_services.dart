@@ -23,17 +23,17 @@ class FirestoreServices {
         .snapshots();
   }
 
-  static todayDeals(todayDeals) {
+  static todayDeals() {
     return firestore
         .collection(productCollection)
-        .where('p_today_deals', isEqualTo: todayDeals)
+        .where('p_today_deals', isEqualTo: true)
         .get();
   }
 
-  static flashSeal(flashSeal) {
+  static flashSeal() {
     return firestore
         .collection(productCollection)
-        .where('flash_seal', isEqualTo: flashSeal)
+        .where('flash_seal', isEqualTo: true)
         .get();
   }
 

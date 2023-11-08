@@ -1,10 +1,12 @@
 import 'package:ecommerse_dev_app/consts/consts.dart';
 import 'package:ecommerse_dev_app/controller/auth_controller.dart';
+import 'package:ecommerse_dev_app/views/auth/EmailVerification.dart';
 import 'package:ecommerse_dev_app/views/auth/login_page.dart';
 import 'package:ecommerse_dev_app/views/pages/home.dart';
 import 'package:ecommerse_dev_app/widget_common/applogo_widget.dart';
 import 'package:ecommerse_dev_app/widget_common/bg_widget.dart';
 import 'package:ecommerse_dev_app/widget_common/textfild_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -140,6 +142,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   retypepassowrdController.text) {
                                 VxToast.show(context,
                                     msg: "Password Not Match");
+                              } else if (nameController.text.isEmpty &&
+                                  emailController.text.isEmpty &&
+                                  passwordController.text.isEmpty &&
+                                  retypepassowrdController.text.isEmpty) {
+                                VxToast.show(context,
+                                    msg: "please All Filed Fill");
                               } else {
                                 await controller
                                     .signupMethod(emailController.text,
@@ -148,10 +156,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         nameController.text,
                                         passwordController.text,
                                         emailController.text))
-                                    .then((value) {
-                                  VxToast.show(context,
-                                      msg: 'Logeed In Successful');
-                                  Get.offAll(() => Home());
+                                    .then((value) async {
+                                  User? user =
+                                      FirebaseAuth.instance.currentUser;
+
+                                  if (user != null && !user.emailVerified) {
+                                    await user.sendEmailVerification().then(
+                                        (value) => Get.offAll(
+                                            () => const EmailVerification()));
+                                  } else {
+                                    VxToast.show(context,
+                                        msg: 'Logeed In Successful');
+                                    Get.offAll(() => Home());
+                                  }
                                 });
                               }
                             } catch (e) {

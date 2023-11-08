@@ -66,38 +66,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:519989135470:android:c09094df871b09fd657e7f",
+        "mobilesdk_app_id": "1:519989135470:android:3b07471b9e247b6d657e7f",
         "android_client_info": {
           "package_name": "com.example.ecommerse_dev_app"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "519989135470-b1kf5kmdc3krroab2ct1bbsut3vdgidu.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAx7s7GLXtRZ3EHaOEPjLEoX7O97wQyihw"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "519989135470-b1kf5kmdc3krroab2ct1bbsut3vdgidu.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:519989135470:android:afad39ecf0d16ce8657e7f",
-        "android_client_info": {
-          "package_name": "com.example.ecommerse_seller_dev_app"
         }
       },
       "oauth_client": [

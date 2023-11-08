@@ -1,5 +1,6 @@
 import 'package:ecommerse_dev_app/consts/consts.dart';
 import 'package:ecommerse_dev_app/controller/product_controller.dart';
+import 'package:ecommerse_dev_app/services/firestore_services.dart';
 import 'package:ecommerse_dev_app/views/order_screen/order_widget.dart';
 import 'package:ecommerse_dev_app/widget_common/button_widget.dart';
 import 'package:ecommerse_dev_app/widget_common/sizedbox_widget.dart';
@@ -36,23 +37,28 @@ class OrderTetails extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Image.network(
-                            data["order"][0]["img"],
+                            data["order"]["img"],
                             width: 100,
                             height: 100,
                           ),
                           sizedBoxwidget(height: 8),
-                          Text(
-                            // ignore: prefer_interpolation_to_compose_strings
-                            "Name \n" + data["order"][0]["title"],
-                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          SizedBox(
+                            width: 150,
+                            child: Text(
+                              maxLines: 3,
+                              // ignore: prefer_interpolation_to_compose_strings
+                              "Name \n" + data["order"]["title"],
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
                           ),
                           sizedBoxwidget(height: 8),
-                          Text("qty ${data["order"][0]["qty"]}",
+                          Text("QTY ${data["order"]["qty"]}",
                               style:
                                   const TextStyle(fontWeight: FontWeight.bold)),
                           sizedBoxwidget(height: 8),
                           // ignore: prefer_interpolation_to_compose_strings
-                          Text("seller id \n" + data["order"][0]["venderId"],
+                          Text("seller id \n" + data["order"]["prodcut_id"],
                               style:
                                   const TextStyle(fontWeight: FontWeight.bold)),
                         ],
@@ -60,7 +66,7 @@ class OrderTetails extends StatelessWidget {
                       Column(
                         children: [
                           Text(
-                            "RS ${data["order"][0]["tprice"]}",
+                            "RS ${data["order"]["tprice"]}",
                             style: const TextStyle(
                                 fontSize: 18,
                                 color: redColor,
@@ -110,21 +116,16 @@ class OrderTetails extends StatelessWidget {
                               onpress: () {
                                 // controller.postreview(controller.reating.value,
                                 //     textEditingController.text);
-                                controller.review(
-                                  controller.reating.value,
-                                  textEditingController.text,
-                                  data["product_doc_id"],
-                                );
-                                // controller.review(
-                                //     p_name: data["order"][0]["title"],
-                                //     seller_id: data["order"][0]["venderId"],
-                                //     username: data["order_by_name"],
-                                //     review: textEditingController.text,
-                                //     rateing: controller.reating.value,
-                                //     userid: data["order_by"],
-                                //     bcontext: context);
-                                // textEditingController.clear();
-                                // controller.reating.value = "0.0";
+                                controller
+                                    .review(
+                                      controller.reating.value,
+                                      textEditingController.text,
+                                      data["product_doc_id"],
+                                    )
+                                    .then(
+                                      (value) =>
+                                          FirestoreServices.getAllOrders(),
+                                    );
                               })
                         ],
                       ),
@@ -221,7 +222,7 @@ class OrderTetails extends StatelessWidget {
                         subtitle1:
                             "Rohit Desai\nnear bus stand\nkolhapur\nmaharshtra 416001\n4578215695",
                         title2: "Total Amount",
-                        subtitle2: "RS ${data["total_amount"]}",
+                        subtitle2: "RS ${data["order"]["tprice"]}",
                         subtitlefontsize2: 18,
                         subtitlecolor2: redColor),
                   ],
@@ -233,15 +234,20 @@ class OrderTetails extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16), color: whiteColor),
                 child: Column(
                   children: [
-                    orderListtile(title: "Product Total", trailing: "₹899"),
-                    orderListtile(title: "Tax", trailing: "₹45"),
+                    orderListtile(
+                        title: "Product Total",
+                        trailing: data["order"]["tprice"].toString()),
+                    orderListtile(
+                        title: "Tax",
+                        trailing: (int.parse(data["order"]["tprice"]) - 100)
+                            .toString()),
                     orderListtile(title: "Delivery fee", trailing: "Free"),
                     const Divider(
                       color: darkFontGrey,
                     ),
                     orderListtile(
                         title: "Sub Total",
-                        trailing: data["total_amount"].toString()),
+                        trailing: data["order"]["tprice"].toString()),
                   ],
                 ),
               )

@@ -29,7 +29,7 @@ class CategoryPage extends StatelessWidget {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    controller.getSubCategories(categoriesTitle[index]);
+                    //controller.getSubCategories(categoriesTitle[index]);
                     Get.to(() => CategoriesDetails(
                           title: categoriesTitle[index],
                         ));
