@@ -21,7 +21,6 @@ class _EmailVerificationState extends State<EmailVerification> {
 
   @override
   void initState() {
-    // TODO: implement initState
     timer = Timer.periodic(const Duration(seconds: 3), (timer) {
       checkEmailVerfied();
     });
@@ -38,7 +37,6 @@ class _EmailVerificationState extends State<EmailVerification> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     timer?.cancel();
     count!.cancel();
     super.dispose();

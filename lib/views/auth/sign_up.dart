@@ -1,6 +1,6 @@
 import 'package:ecommerse_dev_app/consts/consts.dart';
 import 'package:ecommerse_dev_app/controller/auth_controller.dart';
-import 'package:ecommerse_dev_app/views/auth/EmailVerification.dart';
+import 'package:ecommerse_dev_app/views/auth/email_verification.dart';
 import 'package:ecommerse_dev_app/views/auth/login_page.dart';
 import 'package:ecommerse_dev_app/views/pages/home.dart';
 import 'package:ecommerse_dev_app/widget_common/applogo_widget.dart';
@@ -33,11 +33,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final GoogleSignIn googleSignIn = GoogleSignIn();
   @override
   Widget build(BuildContext context) {
-    void sizedbox(double size) {
-      SizedBox(
-        height: size,
-      );
-    }
 
     return bgWidget(
         child: Scaffold(
@@ -173,6 +168,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               }
                             } catch (e) {
                               auth.signOut();
+                              // ignore: use_build_context_synchronously
                               VxToast.show(context, msg: e.toString());
                             }
                           }
@@ -201,8 +197,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           (index) => GestureDetector(
                                 onTap: () {
                                   googleSignIn.signIn().then((value) {
-                                    String username = value!.displayName!;
-                                    String profile = value.photoUrl!;
                                   });
                                 },
                                 child: Padding(

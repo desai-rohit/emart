@@ -12,8 +12,6 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CollectionReference users =
-        FirebaseFirestore.instance.collection(cartCollection);
 
     var controller = Get.put(CartController());
     // var pcontroller = Get.find<ProductController>();

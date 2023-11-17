@@ -1,5 +1,4 @@
 import 'package:ecommerse_dev_app/consts/consts.dart';
-import 'package:ecommerse_dev_app/controller/product_controller.dart';
 import 'package:ecommerse_dev_app/views/pages/category_screen/categories_details.dart';
 import 'package:ecommerse_dev_app/views/pages/category_screen/list/list.dart';
 import 'package:ecommerse_dev_app/widget_common/bg_widget.dart';
@@ -10,7 +9,6 @@ class CategoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(ProductController());
     return bgWidget(
       child: Scaffold(
         appBar: AppBar(

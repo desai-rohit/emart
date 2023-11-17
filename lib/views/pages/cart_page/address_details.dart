@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerse_dev_app/consts/consts.dart';
 import 'package:ecommerse_dev_app/controller/cart_controller.dart';
 import 'package:ecommerse_dev_app/services/firestore_services.dart';
-import 'package:ecommerse_dev_app/views/pages/cart_page/Edit_address.dart';
+import 'package:ecommerse_dev_app/views/pages/cart_page/edit_address.dart';
 import 'package:ecommerse_dev_app/views/pages/cart_page/payment_page.dart';
 import 'package:ecommerse_dev_app/widget_common/button_widget.dart';
 import 'package:ecommerse_dev_app/widget_common/sizedbox_widget.dart';

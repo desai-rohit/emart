@@ -17,11 +17,6 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var controller = Get.put(AuthController());
-    void sizedbox(double size) {
-      SizedBox(
-        height: size,
-      );
-    }
 
     return bgWidget(
         child: Scaffold(

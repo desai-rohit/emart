@@ -17,29 +17,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  // List<String> docId = [];
 
-  // Future getdocId() async {
-  //   await FirebaseFirestore.instance
-  //       .collection(cartCollection)
-  //       .get()
-  //       .then((value) => value.docs.forEach((element) {
-  //             docId.add(element.reference.id);
-  //           }));
-  // }
-
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   getdocId();
-  //   super.initState();
-  // }
 
   @override
   Widget build(BuildContext context) {
     // init home controller
-    CollectionReference users =
-        FirebaseFirestore.instance.collection(cartCollection);
     var controller = Get.put(HomeController());
     var navbarItem = [
       BottomNavigationBarItem(
