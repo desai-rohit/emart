@@ -5,6 +5,8 @@ import 'package:ecommerse_dev_app/services/firestore_services.dart';
 import 'package:ecommerse_dev_app/views/pages/cart_page/cart_page.dart';
 import 'package:ecommerse_dev_app/views/pages/category_screen/category_screen.dart';
 import 'package:ecommerse_dev_app/views/pages/home_screen/home_page.dart';
+import 'package:ecommerse_dev_app/views/pages/no_internet/no_internet.dart';
+import 'package:ecommerse_dev_app/views/pages/no_internet/provider_internet.dart';
 import 'package:ecommerse_dev_app/views/pages/profile_page/profile_page.dart';
 import 'package:get/get.dart';
 
@@ -18,11 +20,24 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
+  @override
+  void initState() {
+
+ var controller = Get.put(ProviderInternet()); 
+
+ controller.startMonitoring();
+
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {
     // init home controller
+
     var controller = Get.put(HomeController());
+     var providerinternet = Get.put(ProviderInternet()); 
+     print(providerinternet.isOnline.value);
     var navbarItem = [
       BottomNavigationBarItem(
           icon: Image.asset(
@@ -87,35 +102,36 @@ class _HomeState extends State<Home> {
       const CartPage(),
       const ProfilePage(),
     ];
-    return Scaffold(
-        body: Column(
-          children: [
-            // Obx(
-            //   () => Expanded(
-            //       child: navbody.elementAt(controller.currentNavIndex.value)),
-            // ),
-            Obx(
-              () => Expanded(
-                child: IndexedStack(
-                  index: controller.currentNavIndex.value,
-                  children: navbody,
+    return Obx(()=>
+     providerinternet.isOnline.value? Scaffold(
+          body: Column(
+            children: [
+              // Obx(
+              //   () => Expanded(
+              //       child: navbody.elementAt(controller.currentNavIndex.value)),
+              // ),
+              Expanded(
+                  child:IndexedStack(
+                    index: controller.currentNavIndex.value,
+                    children: navbody,
+                  )
                 ),
-              ),
-            )
-          ],
-        ),
-        bottomNavigationBar: Obx(
-          (() => BottomNavigationBar(
-                currentIndex: controller.currentNavIndex.value,
-                type: BottomNavigationBarType.fixed,
-                backgroundColor: whiteColor,
-                selectedItemColor: redColor,
-                selectedLabelStyle: const TextStyle(fontFamily: semibold),
-                items: navbarItem,
-                onTap: (value) {
-                  controller.currentNavIndex.value = value;
-                },
-              )),
-        ));
+              
+            ],
+          ),
+          bottomNavigationBar:  BottomNavigationBar(
+                  currentIndex: controller.currentNavIndex.value,
+                  type: BottomNavigationBarType.fixed,
+                  backgroundColor: whiteColor,
+                  selectedItemColor: redColor,
+                  selectedLabelStyle: const TextStyle(fontFamily: semibold),
+                  items: navbarItem,
+                  onTap: (value) {
+                    controller.currentNavIndex.value = value;
+                  },
+                )
+          
+          ):const NoInternet(),
+    );
   }
 }
